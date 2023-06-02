@@ -1,8 +1,9 @@
 
-%cd /Users/sarahnickford/Downloads/CT-NRT.v2023-1 % get to directory of CT-NRT files
+
 clear all;%close all
 
-load saildrone2021_2022_licor.mat
+%load saildrone2021_2022_licor.mat
+load SD_Subset_for_Tailpipe_paper.mat %Instead of loading large Saildrone Files, load in just the subset needed to make Figure 2
 load gebco_NE.mat
 
 %% subset GEBCO 30 arcsec topography
@@ -12,7 +13,6 @@ load gebco_NE.mat
 % 
 % lat_plot = lat_gebco(ilat_topo);
 % lon_plot = lon_gebco(ilon_topo1);
-% save /Users/sarahnickford/Documents/Saildrone/processed/gebco_NE lat_plot lon_plot elev_subset -v7.3
 
 %% Read in CT-NRT_v2023 North Atlantic ocean files
 files = dir('*.nc');
@@ -45,32 +45,32 @@ end
 longitude = ctnrt(1).longitude;
 latitude = ctnrt(1).latitude;
 
-ind_1091 = find(saildrone1091.mtime <= datenum(2021,12,18,23,59,59));
-ind_1091co2 = find(saildrone1091.co2_mtime <= datenum(2021,12,18,23,59,59));
-ind_1092co2 = find(saildrone1092.co2_mtime <= datenum(2021,12,18,23,59,59));
-ind_1090co2 = find(saildrone1090.co2_mtime <= datenum(2021,12,18,23,59,59));
+%ind_1091 = find(saildrone1091.mtime <= datenum(2021,12,18,23,59,59));
+%ind_1091co2 = find(saildrone1091.co2_mtime <= datenum(2021,12,18,23,59,59));
+%ind_1092co2 = find(saildrone1092.co2_mtime <= datenum(2021,12,18,23,59,59));
+%ind_1090co2 = find(saildrone1090.co2_mtime <= datenum(2021,12,18,23,59,59));
 
 surf_xco2_map = nanmean(surf_xco2,3);
 surf_xco2_interp1091 = interp3(longitude,latitude,mtime,surf_xco2,saildrone1091.longitude(ind_1091),saildrone1091.latitude(ind_1091),saildrone1091.mtime(ind_1091));
 
 
-xco2_atm_1090 = saildrone1090.xco2_dry_air_mean_asvco2;
-xco2_atm_1090 = xco2_atm_1090(~isnan(xco2_atm_1090));
-xco2_atm_1091 = saildrone1091.xco2_dry_air_mean_asvco2;
-xco2_atm_1091 = xco2_atm_1091(~isnan(xco2_atm_1091));
-xco2_atm_1092 = saildrone1092.xco2_dry_air_mean_asvco2;
-xco2_atm_1092 = xco2_atm_1092(~isnan(xco2_atm_1092));
-xco2_atm_1092 = saildrone1092.xco2_dry_air_mean_asvco2;
-xco2_atm_1092 = xco2_atm_1092(~isnan(xco2_atm_1092));
+%xco2_atm_1090 = saildrone1090.xco2_dry_air_mean_asvco2;
+%xco2_atm_1090 = xco2_atm_1090(~isnan(xco2_atm_1090));
+%xco2_atm_1091 = saildrone1091.xco2_dry_air_mean_asvco2;
+%xco2_atm_1091 = xco2_atm_1091(~isnan(xco2_atm_1091));
+%xco2_atm_1092 = saildrone1092.xco2_dry_air_mean_asvco2;
+%xco2_atm_1092 = xco2_atm_1092(~isnan(xco2_atm_1092));
+%xco2_atm_1092 = saildrone1092.xco2_dry_air_mean_asvco2;
+%xco2_atm_1092 = xco2_atm_1092(~isnan(xco2_atm_1092));
 
-lat1090 = interp1(saildrone1090.mtime,saildrone1090.latitude,saildrone1090.co2_mtime);
-lon1090 = interp1(saildrone1090.mtime,saildrone1090.longitude,saildrone1090.co2_mtime);
-lat1091 = interp1(saildrone1091.mtime,saildrone1091.latitude,saildrone1091.co2_mtime);
-lon1091 = interp1(saildrone1091.mtime,saildrone1091.longitude,saildrone1091.co2_mtime);
-lat1092 = interp1(saildrone1092.mtime,saildrone1092.latitude,saildrone1092.co2_mtime);
-lon1092 = interp1(saildrone1092.mtime,saildrone1092.longitude,saildrone1092.co2_mtime);
-lat1092 = interp1(saildrone1092.mtime,saildrone1092.latitude,saildrone1092.co2_mtime);
-lon1092 = interp1(saildrone1092.mtime,saildrone1092.longitude,saildrone1092.co2_mtime);
+%lat1090 = interp1(saildrone1090.mtime,saildrone1090.latitude,saildrone1090.co2_mtime);
+%lon1090 = interp1(saildrone1090.mtime,saildrone1090.longitude,saildrone1090.co2_mtime);
+%lat1091 = interp1(saildrone1091.mtime,saildrone1091.latitude,saildrone1091.co2_mtime);
+%lon1091 = interp1(saildrone1091.mtime,saildrone1091.longitude,saildrone1091.co2_mtime);
+%lat1092 = interp1(saildrone1092.mtime,saildrone1092.latitude,saildrone1092.co2_mtime);
+%lon1092 = interp1(saildrone1092.mtime,saildrone1092.longitude,saildrone1092.co2_mtime);
+%lat1092 = interp1(saildrone1092.mtime,saildrone1092.latitude,saildrone1092.co2_mtime);
+%lon1092 = interp1(saildrone1092.mtime,saildrone1092.longitude,saildrone1092.co2_mtime);
 latlim = [38.5 42.5];%[37.5 42.5];%[35.5 42.5]
 lonlim =  [-73.5 -68.485];% [-75.5 -62]
 
