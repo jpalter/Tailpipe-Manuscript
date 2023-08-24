@@ -1,4 +1,4 @@
-%carbon_tracker_over_time_v4
+%Calculate_fluxes_forTable2_Figure1and3.m
 
 %A newer version of the code made to eliminate some bug introduced in v2
 %while responding to reviewers
